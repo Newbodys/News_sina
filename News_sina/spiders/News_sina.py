@@ -8,8 +8,6 @@ db = client.news
 
 
 class News_sina(scrapy.Spider):
-
-class News_sina(scrapy.Spiderhttps):
 	name = "News_sina"
 	start_urls = []
 	url_base = "http://roll.news.sina.com.cn/s/channel.php?ch=01#col=89&spec=&type=&ch=01&k=&offset_page=0&offset_num=0&num=80&asc=&page="
