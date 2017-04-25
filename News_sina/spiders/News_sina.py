@@ -29,7 +29,7 @@ class News_sina(scrapy.Spider):
 				'title':title,
 				'time':time,
 				'news_content_link':news_content_link,
-				'news_content':"",
+				'news_content':[],
 				})
 			db.news_list.insert(document)
 			yield scrapy.Request(url=news_content_link[0],callback=self.parse_page)
