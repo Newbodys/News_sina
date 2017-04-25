@@ -34,7 +34,6 @@ class News_sina(scrapy.Spiderhttps):
 				'news_content':"",
 				})
 			db.news_list.insert(document)
-
 			yield scrapy.Request(url=news_content_link[0],callback=self.parse_page)
 
 		'''#channel = response.xpath('//span[@class="c_ch1"]/a/text()').extract()
