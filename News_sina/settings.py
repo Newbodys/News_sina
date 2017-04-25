@@ -57,9 +57,16 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'News_sina.middlewares.MyCustomDownloaderMiddleware': 543,
-#}
+#PROXY_LIST = 'F:\News_sina\proxy.txt'
+
+#RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408]
+
+DOWNLOADER_MIDDLEWARES = {
+    #'News_sina.middlewares.MyCustomDownloaderMiddleware': 543,
+    #'scrapy.downloadermiddlewares.retry.RetryMiddleware': 80,
+    'News_sina.middlewares.ProxyMiddleware': 100,
+    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
+}
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html

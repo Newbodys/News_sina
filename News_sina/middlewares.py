@@ -6,6 +6,12 @@
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
+import random
+import codecs
+from pymongo import MongoClient
+
+client = MongoClient('localhost',27017)
+db = client.proxydb
 
 
 class NewsSinaSpiderMiddleware(object):
@@ -54,3 +60,11 @@ class NewsSinaSpiderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+class ProxyMiddleware(object):
+    
+
+    def process_request(self,request,spider):
+
+        choice_ip = db.address.find_one({"ip_index":random.randint(0,db.address.count())})
+        request.meta['proxy'] = "http://" + str(choice_ip["address_ip"])
